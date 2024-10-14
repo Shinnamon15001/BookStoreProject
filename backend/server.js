@@ -3,9 +3,13 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
+
 
 // URL พื้นฐานของ API
-const apiBaseUrl = "http://localhost:3000";
+const apiBaseUrl = "http://localhost:5500";
 
 // กำหนด Template Engine
 app.set("views", path.join(__dirname, "/public/views"));

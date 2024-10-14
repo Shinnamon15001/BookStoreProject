@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function BookList() {
+  const [books, setBooks] = useState([]);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  useEffect(() => {
+    axios.get('http://localhost:5500/books')
+      .then(response => {
+        setBooks(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching books:", error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1 class="font-serif size-5">Book List</h1>
+      <ul>
+        {books.map((book) => (
+          <li key={book.id}>{book.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default BookList;
