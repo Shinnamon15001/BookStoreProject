@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/build"))); // Adjust path according to your project structure
+app.use(express.static(path.join(__dirname, "../client/build"))); // Adjust path according to your project structure
 
 // Base URL for the API
 const apiBaseUrl = "http://localhost:5500";
