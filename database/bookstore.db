@@ -1,6 +1,0 @@
-INSERT INTO Books (BookID, BookName, BookTypeID, BookPrice, Description) VALUES
-(1, 'The Great Gatsby', 1, 10.99, 'A novel by F. Scott Fitzgerald.'),
-(2, '1984', 2, 8.99, 'A dystopian novel by George Orwell.'),
-(3, 'To Kill a Mockingbird', 1, 12.99, 'A novel by Harper Lee.'),
-(4, 'The Catcher in the Rye', 1, 9.99, 'A novel by J.D. Salinger.'),
-(5, 'Brave New World', 2, 11.99, 'A dystopian novel by Aldous Huxley.');
