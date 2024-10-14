@@ -1,50 +1,47 @@
-// src/index.jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import AddBook from './AddBook'; // Import your AddBook component
-import DeleteBook from './DeleteBook'; // Import your DeleteBook component
-import ShowBooks from './ShowBooks'; // Import your ShowBooks component
-import AddMember from './AddMember'; // Import your AddMember component
-import AddCustomer from './AddCustomer'; // Import your AddCustomer component
-import AddBookType from './AddBookType'; // Import your AddBookType component
-import './styles.css'; // Import your CSS styles if needed
+import React from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import ShowBooks from "./ShowBooks"; // Import the ShowBooks component
+import AddBook from "./AddBook"; // Ensure you create this file too
+import DeleteBook from "./DeleteBook"; // Ensure you create this file too
+import AddMember from "./AddMember"; // Ensure you create this file too
+import AddCustomer from "./AddCustomer"; // Ensure you create this file too
+import AddBookType from "./AddBookType"; // Ensure you create this file too
 
+const HomePage = () => {
+  return (
+    <div>
+      <h1>Welcome to the Bookstore</h1>
+      <nav>
+        <ul>
+          <li><Link to="/add-book">Add Book</Link></li>
+          <li><Link to="/delete-book">Delete Book</Link></li>
+          <li><Link to="/show-books">Show Books</Link></li>
+          <li><Link to="/add-member">Add Member</Link></li>
+          <li><Link to="/add-customer">Add Customer</Link></li>
+          <li><Link to="/add-book-type">Add Book Type</Link></li>
+        </ul>
+      </nav>
+      {/* Show books directly on the homepage */}
+      <ShowBooks />
+    </div>
+  );
+};
+
+// Main application component
 const App = () => {
   return (
     <Router>
-      <div className="container">
-        <header>
-          <h1>Bookstore Management</h1>
-          <nav>
-            <ul>
-              <li><Link to="/add-book">Add Book</Link></li>
-              <li><Link to="/delete-book">Delete Book</Link></li>
-              <li><Link to="/show-books">Show Books</Link></li>
-              <li><Link to="/add-member">Add Member</Link></li>
-              <li><Link to="/add-customer">Add Customer</Link></li>
-              <li><Link to="/add-booktype">Add Book Type</Link></li>
-            </ul>
-          </nav>
-        </header>
-
-        <main>
-          <h2>Available Books</h2>
-          <ShowBooks /> {/* Component to show all books sorted by book type */}
-        </main>
-
-        <Routes>
-          <Route path="/add-book" element={<AddBook />} />
-          <Route path="/delete-book" element={<DeleteBook />} />
-          <Route path="/show-books" element={<ShowBooks />} />
-          <Route path="/add-member" element={<AddMember />} />
-          <Route path="/add-customer" element={<AddCustomer />} />
-          <Route path="/add-booktype" element={<AddBookType />} />
-        </Routes>
-      </div>
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/add-book" component={AddBook} />
+        <Route path="/delete-book" component={DeleteBook} />
+        <Route path="/show-books" component={ShowBooks} />
+        <Route path="/add-member" component={AddMember} />
+        <Route path="/add-customer" component={AddCustomer} />
+        <Route path="/add-book-type" component={AddBookType} />
+      </Switch>
     </Router>
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+export default App;
